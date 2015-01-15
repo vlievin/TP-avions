@@ -28,8 +28,17 @@ int main()
 /* SPACESHIPS	*/
 
 	//Loading the SPACESHIPS nodes
-	osg::ref_ptr<osg::Node> xWing (osgDB::readNodeFile("C:\\Users\\eleve\\Documents\\Visual Studio 2012\\Projects\\TPosgAvions\\TPosgAvions\\model\\StarWars\\star wars x-wing.3ds"));
-	osg::ref_ptr<osg::Node> tFighter (osgDB::readNodeFile("C:\\Users\\eleve\\Documents\\Visual Studio 2012\\Projects\\TPosgAvions\\TPosgAvions\\model\\mechant\\TF_3DS02.3ds"));
+	osg::ref_ptr<osg::Node> xWing (osgDB::readNodeFile("C://Users//eleve//Documents//GitHub//TP-avions//TP-AvionOSG//model//StarWars//star wars x-wing.3ds"));
+	if (xWing == nullptr)
+		cout << "Xwing pas trouve" << endl;
+	else 
+		cout << "ok 1" << endl;
+
+	osg::ref_ptr<osg::Node> tFighter (osgDB::readNodeFile("C://Users//eleve//Documents//GitHub//TP-avions//TP-AvionOSG//model//mechant//TF_3DS02.3ds"));
+	if (tFighter == nullptr)
+		cout << "truc truc pas la" << endl;
+	else
+		cout << "ok 2" << endl;
 
 /* Scale Matrix	*/
 
