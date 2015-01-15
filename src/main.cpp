@@ -25,6 +25,36 @@ int main()
 	//Creating the root node
 	osg::ref_ptr<osg::Group> root (new osg::Group);
 
+	//creating a geode to contain static elements
+	osg::ref_ptr<osg::Geode> fixedElementGeode (new osg::Geode);
+
+	/*Creating a cube to see the borders of the battlefield*/
+
+		osg::ref_ptr<osg::Box> myBox (new osg::Box(osg::Vec3f(7,7,7),14));
+
+		osg::ref_ptr<osg::ShapeDrawable> boxdrawable (new osg::ShapeDrawable(myBox.get()));
+
+		// link to geode
+		fixedElementGeode->addDrawable(boxdrawable.get());
+
+		//wireframe
+
+			//create a stateset
+
+		osg::ref_ptr<osg::StateSet> WireFrameStateSet (new osg::StateSet); 
+
+		osg::PolygonMode * polygonMode = new osg::PolygonMode;
+		polygonMode->setMode( osg::PolygonMode::FRONT_AND_BACK, osg::PolygonMode::LINE );
+ 
+		WireFrameStateSet->setAttributeAndModes( polygonMode, 
+        osg::StateAttribute::OVERRIDE | osg::StateAttribute::ON );
+
+		// link
+		boxdrawable->getOrCreateStateSet()->setAttributeAndModes(polygonMode);
+
+
+	
+
 /* SPACESHIPS	*/
 
 	//Loading the SPACESHIPS nodes
@@ -96,6 +126,8 @@ int main()
 	root->addChild(pat2.get());
 	root->addChild(pat3.get());
 	root->addChild(pat4.get());
+
+	root->addChild(fixedElementGeode.get());
 
 	// Set the scene data
 	viewer.setSceneData( root.get() ); 
